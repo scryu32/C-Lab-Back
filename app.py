@@ -1,12 +1,18 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from cfiles import fibonacci
+from cfiles.fibonacci import fibonacci
+from cfiles.quadratic import quadratic
 
 app = FastAPI()
 
 
 class FibonacciRequest(BaseModel):
     num: int
+
+class QuadraticRequest(BaseModel):
+    a: float
+    b: float
+    c: float
 
 @app.post("/fibonacci")
 def get_fibonacci(request: FibonacciRequest):
@@ -17,3 +23,10 @@ def get_fibonacci(request: FibonacciRequest):
     result = fibonacci.get_fibonacci_sequence(num)
     return {"sequence": result}
 
+@app.post("/quadratic")
+def get_quadratic(request: QuadraticRequest):
+    a = request.a
+    b = request.b
+    c = request.c
+    result= quadratic.getQuadraticAnswer(a, b, c)
+    return {"ans" : result}
