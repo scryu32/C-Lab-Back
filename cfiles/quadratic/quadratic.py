@@ -15,8 +15,5 @@ def getQuadraticAnswer(a: float, b: float, c: float):
     #문자열로 받을거니까 인코딩 해야함
     result = ctypes.string_at(result_ptr).decode("utf-8")
     quadratic_lib.freeArray(result_ptr)
-    print(result)
     return result
 
-# 테스트 호출
-getQuadraticAnswer(1, 2, 1)

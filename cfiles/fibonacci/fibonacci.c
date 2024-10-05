@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include <stdlib.h>
+#include<stdlib.h>
 
 // 롱롱써야 숫자 64비트정수까지 저장되는거라 좀더 큰값까지 됨
 long long Fibonacci(int n){
@@ -14,13 +14,14 @@ long long Fibonacci(int n){
         iterA = iterB;
         iterB = result;
     }
+    // 재귀함수 안쓰는이유 : 메모리 호출 너무 깊어지고 성능도 안좋음
     return result;
 }
 
 // 앞에 붙어있는거는 동적 메모리 사용, 즉 포인터로 반환하겠다는소리
 // + dll파일로 컴파일 할게요~ 라는 소리
 __declspec(dllexport)  long long* getFibonacci(int k){
-    long long* arr = (long long*)malloc(k * sizeof(long long)); //말록은 동적으로 메모리 할당하겠다는 소리, 즉 받은 인자만큼 메모리 차지할게요 라는 소리임
+    long long* arr = (long long*)malloc(k * sizeof(long long)); //malloc은 동적으로 메모리 할당하겠다는 소리, 값 들어오면 메모리 차지하는정도 늘릴게요 라는 소리임
     for (int i=0; i < k; i++) {
         arr[i] = Fibonacci(i);
     }

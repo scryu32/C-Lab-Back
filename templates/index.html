@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Frontend</title>
+</head>
+<body>
+    <input type="number" id="fibnumberInput" placeholder="피보나치 수열">
+    <button id="fibonaccib">Get Array</button>
+    <div id="fibresult"></div>
+
+    <input type="number" id="catalannumberInput" placeholder="카탈랑 수">
+    <button id="catalanb">Get Array</button>
+    <div id="catalanresult"></div>
+
+    <input type="number" id="collatznumberInput" placeholder="콜라츠 추측">
+    <button id="collatzb">Get Array</button>
+    <div id="collatzresult"></div>
+
+    <input type="number" id="primenumberInput" placeholder="소인수 분해">
+    <button id="primeb">Get Array</button>
+    <div id="primeresult"></div>
+
+    <script>
+         document.getElementById('fibonaccib').addEventListener('click', () => {
+            const number = document.getElementById('fibnumberInput').value;
+            fetch('/fibonacci', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    num: number
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('fibresult').innerHTML = `
+                    <p>피보나치 수열: ${data.sequence}</p>
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('catalanb').addEventListener('click', () => {
+            const number = document.getElementById('catalannumberInput').value;
+            fetch('/catalan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    num: number
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('catalanresult').innerHTML = `
+                    <p>카탈랑 수: ${data.answer}</p>
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('collatzb').addEventListener('click', () => {
+            const number = document.getElementById('collatznumberInput').value;
+            fetch('/collatz', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    num: number
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('collatzresult').innerHTML = `
+                    <p>가장큰수: ${data.biggest}</p>
+                    <p>횟수: ${data.times}</p>
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('primeb').addEventListener('click', () => {
+            const number = document.getElementById('primenumberInput').value;
+            fetch('/prime', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    num: number
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('primeresult').innerHTML = `
+                    <p>소인수 갯수: ${data.count}</p>
+                    <p>소인수: ${data.factors}</p>
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
