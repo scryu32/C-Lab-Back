@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example Frontend</title>
+    <title> Frontend</title>
 </head>
 <body>
     <input type="number" id="fibnumberInput" placeholder="피보나치 수열">
@@ -21,6 +21,24 @@
     <input type="number" id="primenumberInput" placeholder="소인수 분해">
     <button id="primeb">Get Array</button>
     <div id="primeresult"></div>
+
+    <div>
+        <form action="/genshin/gatcha/character" method="POST">
+            <input type="text" name="characterName" placeholder="뽑고싶은 캐릭터를 입력하세요">
+            <!---위에거 나중에 선택으로 바꾸는게 좋을듯--->
+            <input type="number" name="ticket" placeholder="몇뽑에 뽑을건지 적어주세요">
+            <select name="constellation">
+              <option value="0(명함)">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <input type="number" name="simTimes" placeholder="시뮬레이션 돌릴 횟수 적어주세요" min="0" max="100000">
+        </form>
+    </div>
 
     <script>
          document.getElementById('fibonaccib').addEventListener('click', () => {

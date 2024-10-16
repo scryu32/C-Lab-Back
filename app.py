@@ -16,6 +16,13 @@ class QuadraticRequest(BaseModel):
     b: float
     c: float
 
+class GenshinSim(BaseModel):
+    character: str
+    ticket: int
+    constellation: int
+    simTimes: int
+
+
 from fastapi.responses import FileResponse
 
 @app.get("/")
@@ -58,3 +65,10 @@ def get_prime(request: intReq):
     num = request.num
     result = prime.getNicePrime(num)
     return {"count": result['count'], "factors": result['factors']}
+
+@app.post("/genshin/gatcha/character")
+def get_genshinGatchaOfCharacter(requset: GenshinSim):
+    character = requset.characterName
+    ticket = requset.ticket
+    constellation = requset.constellation
+    simTimes = requset.simTimes
