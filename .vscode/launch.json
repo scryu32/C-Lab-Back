@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/scryu/Desktop/schoolproject/cfiles",
-      "program": "c:/Users/scryu/Desktop/schoolproject/cfiles/build/Debug/outDebug",
+      "cwd": "c:/Users/scryu/Desktop/schoolproject/cfiles/genshinSimulator",
+      "program": "c:/Users/scryu/Desktop/schoolproject/cfiles/genshinSimulator/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
