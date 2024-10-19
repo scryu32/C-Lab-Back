@@ -5,6 +5,7 @@ from cfiles.quadratic import quadratic
 from cfiles.catalan import catalan
 from cfiles.collatz import collatz
 from cfiles.prime import prime
+from cfiles.genshinSimulator import genshinSimulator
 
 app = FastAPI()
 
@@ -72,3 +73,12 @@ def get_genshinGatchaOfCharacter(requset: GenshinSim):
     ticket = requset.ticket
     constellation = requset.constellation
     simTimes = requset.simTimes
+    if (simTimes > 1000000):
+        return {"error": "숫자가 너무 큽니다"}
+    if (constellation > 6):
+        return {"error": "숫자가 너무 큽니다(별자리는 최대 6)"}
+    if (ticket <= 0):
+        return {"error": "티켓 숫자를 자연수로 입력하세요"}
+    result = genshinSimulator.genshinSimulator(constellation, simTimes, ticket, character)
+    return result
+    
