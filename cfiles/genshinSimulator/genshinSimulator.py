@@ -29,5 +29,3 @@ def genshinSimulator(constellation: int, simTimes: int, ticket: int, wantCharact
     sangwi = myRank.value
     return {"result": result_dict, "Sangwi": (sangwi/simTimes)*100}
 
-print(genshinSimulator(6, 1000000, 200, '치오리'))
-
