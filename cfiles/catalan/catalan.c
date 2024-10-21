@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 
 // __declspec(dllexport) long long factorial(int n) {
 //     long long k = 1;
@@ -20,11 +21,16 @@
 //     return bunja / bunmo;
 // }
 
-// 팩토리얼을 직접 계산하면 longlong도 감당 못할정도로 숫자가 너무 커짐. 그냥 공식써서 구하는게 빠를거같음
+// 팩토리얼을 직접 계산하면 longlong도 감당 못할정도로 숫자가 너무 커짐.
 
 __declspec(dllexport) long long getCatalanArr(int n) {
-    long long catalan[n + 1];
-    catalan[0] = 1;  // C(0) = 1
+    long long* catalan = (long long*)malloc((n + 1) * sizeof(long long));
+    
+    if (catalan == NULL) {
+        return -1;
+    }
+
+    catalan[0] = 1;
 
     for (int i = 1; i <= n; i++) {
         catalan[i] = 0;
@@ -33,5 +39,9 @@ __declspec(dllexport) long long getCatalanArr(int n) {
         }
     }
     
-    return catalan[n];
+    long long result = catalan[n];
+    
+    free(catalan);
+    
+    return result;
 }

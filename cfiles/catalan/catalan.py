@@ -17,5 +17,3 @@ def getNiceCatalan(num: int):
         cat_arr.append(catalan_lib.getCatalanArr(i+1))
     return cat_arr
 
-
-

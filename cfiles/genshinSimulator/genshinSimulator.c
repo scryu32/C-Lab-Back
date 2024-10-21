@@ -76,7 +76,7 @@ GenshinResult* getGenshinCharacterPickUP(int constellation) {
     return result;
 }
 
-// 최종 함수
+//리턴값을 없애버림
 __declspec(dllexport) void get_simulation_result(int constellation, int simTimes, int ticket, int* mostLowest, int* resultArray, int* myRank) {
     srand(time(NULL));
     int lowest = ticket;

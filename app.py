@@ -6,8 +6,17 @@ from cfiles.catalan import catalan
 from cfiles.collatz import collatz
 from cfiles.prime import prime
 from cfiles.genshinSimulator import genshinSimulator
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 모든 도메인 허용
+    allow_credentials=True,
+    allow_methods=["*"],  # 모든 HTTP 메서드 허용
+    allow_headers=["*"],  # 모든 헤더 허용
+)
 
 class intReq(BaseModel):
     num: int
@@ -37,7 +46,7 @@ def get_fibonacci(request: intReq):
         return {"error": "숫자가 너무 큽니다. 93 이하로 입력하세요."}
     
     result = fibonacci.getNiceFibonacci(num)
-    return {"sequence": result}
+    return {"result": result}
 
 @app.post("/quadratic")
 def get_quadratic(request: QuadraticRequest):
@@ -45,7 +54,7 @@ def get_quadratic(request: QuadraticRequest):
     b = request.b
     c = request.c
     result= quadratic.getQuadraticAnswer(a, b, c)
-    return {"answer" : result}
+    return {"result" : result}
 
 @app.post("/catalan")
 def get_catalan(request: intReq):
@@ -53,7 +62,7 @@ def get_catalan(request: intReq):
     if num > 34:
         return {"error": "숫자가 너무 큽니다. 34 이하로 입력하세요."}
     result = catalan.getNiceCatalan(num)
-    return {"answer" : result}
+    return {"result" : result}
 
 @app.post("/collatz")
 def get_collatz(request: intReq):
