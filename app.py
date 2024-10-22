@@ -8,6 +8,8 @@ from cfiles.prime import prime
 from cfiles.genshinSimulator import genshinSimulator
 from fastapi.middleware.cors import CORSMiddleware
 
+#gcc --% -shared -o 이름.dll -Wl,--out-implib,lib이름.a 이름.c
+
 app = FastAPI()
 
 app.add_middleware(
