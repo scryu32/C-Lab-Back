@@ -14,10 +14,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 모든 도메인 허용
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # 모든 HTTP 메서드 허용
-    allow_headers=["*"],  # 모든 헤더 허용
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 class intReq(BaseModel):
@@ -70,7 +70,7 @@ def get_catalan(request: intReq):
 def get_collatz(request: intReq):
     num = request.num
     result = collatz.getNiceCollatz(num)
-    return {"biggest" : result[0], "times" : result[1]}
+    return {"biggest" : result[1], "times" : result[0]}
 
 @app.post("/prime")
 def get_prime(request: intReq):
@@ -78,9 +78,9 @@ def get_prime(request: intReq):
     result = prime.getNicePrime(num)
     return {"count": result['count'], "factors": result['factors']}
 
-@app.post("/genshin/gatcha/character")
+@app.post("/genshin/character")
 def get_genshinGatchaOfCharacter(requset: GenshinSim):
-    character = requset.characterName
+    character = requset.character
     ticket = requset.ticket
     constellation = requset.constellation
     simTimes = requset.simTimes
