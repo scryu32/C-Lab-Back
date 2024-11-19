@@ -3,10 +3,6 @@
 #include <time.h>
 #include <stdbool.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <stdbool.h>
 
 // 돌린 횟수를 가져오는 함수
 int getCharacterTimes() {
